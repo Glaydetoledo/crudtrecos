@@ -6,7 +6,7 @@
 
 <p>Logue-se para gerenciar sua coleção.</p>
 
-<form action="" method="post">
+<form action="/login" method="post" id="formLogin">
 
     <p>
         <label for="email">E-mail:</label>
@@ -15,7 +15,7 @@
 
     <p>
         <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required minlength="6" maxlength="63">
+        <input type="password" name="senha" id="senha" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
     </p>
 
     <p>
@@ -23,8 +23,22 @@
     </p>
 
 </form>
+<hr>
+<ul>
+    <li>Não é cadastrado? <a href="/cadastro">Clique aqui!</a></li>
+    <li>Esqueceu a senha? <a href="/novasenha">Clique aqui!</a></li>
+</ul>
 
-<p>Não é cadastrado? <a href="/cadastro">Clique aqui!</a></p>
-<p>Esqueceu a senha? <a href="/novasenha">Clique aqui!</a></p>
+
+{% if erro %}
+
+<dialog id="myDialog">
+    <h4>Oooops!</h4>
+    <p>Não encontrei seus dados! Verifique o e-mail e a senha e tente novamente.</p>
+    <form method="dialog"><button>OK</button></form>
+</dialog>
+<script>myDialog.showModal()</script>
+
+{% endif %}
 
 {% endblock %}
